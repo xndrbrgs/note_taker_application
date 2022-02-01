@@ -56,9 +56,9 @@ app.delete('/api/notes/:id', (req, res) => {
     notesSaved = notesSaved.filter(checked => {
         return checked.id != noteID;
     })
-
-    fs.writeFileSync('db/db.json', JSON.stringify(notesSaved))
-    res.json(notesSaved);
+    const strungNotes = JSON.stringify(notesSaved)
+    fs.writeFileSync('db/db.json', strungNotes);
+    res.json(strungNotes);
 })
 
 // GET function for index.html 
