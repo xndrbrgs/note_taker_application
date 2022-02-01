@@ -9,13 +9,15 @@
   ## Table of Contents
   - [Description](#description)
   - [Installation](#installation)
-  - [Licensing](#license)
-  - [Contributing](#contribute)
-  - [Testing](#tests)
+  - [Licensing](#licensing)
+  - [Contributing](#contributing)
+  - [Testing](#testing)
   - [Contact](#contact)
 
   ## Installation
   To be able to install this project, the repo must be cloned and opened in an IDE. Once opened, the npm modules Express, Path, and Nodemon must be installed to be able to run the project.
+  
+![Site Gif](https://media.giphy.com/media/H0zP4v9mX4dTj3keTy/giphy.gif)
 
   ## Licensing
   Distributed under MIT licensing. 
