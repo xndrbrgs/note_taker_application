@@ -31,22 +31,20 @@ app.get('/api/notes', (req, res) => {
 // POST function for /api/notes 
 
 app.post('/api/notes', (req, res) => {
-    fs.readFile(path.join(__dirname, '/db/db.json', 'utf8', (err, data) => {
+    const newNote = {
+        title: req.body.title,
+        text: req.body.text,
+        id: uuid
+    };
+
+    notes.push(newNote);
+    const notesString = JSON.stringify(notes);
+    res.json(notes);
+
+    fs.writeFile('db/db.json', notesString, (err, data) => {
         if (err) throw err;
-        const oldJson = JSON.parse(data);
-        const dbJson = [];
-        oldJson.push(req.body);
-
-        for (var i = 0; i < oldJson.length; i++) {
-            const newNote = {
-                title: oldJson[i].title,
-                Text: oldJson[i].text,
-                id: uuid()
-            }
-        }
-
     })
-});
+})
 
 // GET function for index.html 
 
