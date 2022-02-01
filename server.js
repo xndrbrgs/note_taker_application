@@ -12,8 +12,6 @@ app.use(express.static('public'));
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 let notes = require('./db/db.json');
-const { json } = require('express/lib/response');
-
 
 // GET function for notes.html 
 
@@ -24,7 +22,16 @@ app.get('/notes', (req, res) => {
 // GET function to start displaying notes 
 
 app.get('/api/notes', (req, res) => {
-    fs.readFile(__dirname, '/db/db.json', 'utf8', (err, data) => {
+    fs.readFile( 'db/db.json', 'utf8', (err, data) => {
+        if (err) throw err;
+        res.json(notes);
+    })
+});
+
+// POST function for /api/notes 
+
+app.post('/api/notes', (req, res) => {
+    fs.readFile(path.join(__dirname, '/db/db.json', 'utf8', (err, data) => {
         if (err) throw err;
         const oldJson = JSON.parse(data);
         const dbJson = [];
@@ -38,7 +45,7 @@ app.get('/api/notes', (req, res) => {
             }
         }
 
-    } )
+    })
 });
 
 // GET function for index.html 
