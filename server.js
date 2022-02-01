@@ -11,6 +11,7 @@ const PORT = process.env.PORT || 3001;
 app.use(express.static('public'));
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
+
 let notes = require('./db/db.json');
 
 // GET function for notes.html 
@@ -44,6 +45,20 @@ app.post('/api/notes', (req, res) => {
     fs.writeFile('db/db.json', notesString, (err, data) => {
         if (err) throw err;
     })
+})
+
+// DELETE function to get rid of notes 
+
+app.delete('/api/notes/:id', (req, res) => {
+    let noteID = (req.params.id).toString();
+    let notesSaved = JSON.parse(fs.readFileSync('db/db.json', 'utf8'));
+
+    notesSaved = notesSaved.filter(checked => {
+        return checked.id != noteID;
+    })
+
+    fs.writeFileSync('db/db.json', JSON.stringify(notesSaved))
+    res.json(notesSaved);
 })
 
 // GET function for index.html 
