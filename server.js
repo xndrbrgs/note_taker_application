@@ -2,7 +2,7 @@
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
-const uuid = require('uuid');
+const uuid = require('./helpers/uuid');
 
 // Global constants for express 
 const app = express();
@@ -32,9 +32,9 @@ app.get('/api/notes', (req, res) => {
 
 app.post('/api/notes', (req, res) => {
     const newNote = {
+        id: uuid(),
         title: req.body.title,
         text: req.body.text,
-        id: uuid
     };
 
     notes.push(newNote);
